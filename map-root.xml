@@ -2,12 +2,12 @@
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <sitemap>
-    <loc>https://nano.sahaj.ai/map-main.xml</loc>
+    <loc>https:// api.flexdoc.com.au/map-main.xml</loc>
     <lastmod>2026-05-25</lastmod>
   </sitemap>
 
   <sitemap>
-    <loc>https://nano.sahaj.ai/map-pages.xml</loc>
+    <loc>https:// api.flexdoc.com.au/map-pages.xml</loc>
     <lastmod>2026-05-25</lastmod>
   </sitemap>
 </sitemapindex>
