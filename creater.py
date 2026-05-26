@@ -7,14 +7,14 @@ from datetime import datetime, timedelta
 # ==============================================================================
 # GENERATOR PRO - GITHUB ACTIONS OPTIMIZED
 # - تم تحسين الأداء ليعمل ضمن بيئة GitHub Actions بدون توقف (Hang)
-# - دعم القوالب المتعددة (test.html, test1.html, test2.html)
+# - دعم القوالب المتعددة (test.html)
 # - إنشاء مجلدات فرعية وتوليد 200 صفحة في الدورة الواحدة
 # ==============================================================================
 
 class ContinuousGenerator:
     def __init__(self):
         self.templates = {}
-        self.template_names = ["test.html", "test1.html", "test2.html"]
+        self.template_names = ["test.html"]
         self.keywords_ar = []
         self.keywords_en = []
         self.max_files_per_folder = 500
