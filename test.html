@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- تم ضبط الاتجاه ليدعم العربية RTL، يمكنك تغييره إلى ltr للإنجليزية -->
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -7,31 +6,27 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!-- ========================================== -->
-    <!-- السيو الأساسي (SEO) الأساسي (قم بتغيير القيم) -->
+    <!-- السيو الأساسي (تلقائي من السكربت) -->
     <!-- ========================================== -->
-    <title>عنوان الفيديو يكتب هنا - اسم موقعك</title>
-    <meta name="description" content="وصف دقيق ومحشو بالكلمات المفتاحية للفيديو يكتب هنا. هذا الوصف يظهر في نتائج بحث جوجل.">
-    <meta name="keywords" content="كلمة مفتاحية1, كلمة مفتاحية2, تغليف, استدامة, فيديو حصري">
-    <meta name="author" content="اسم الكاتب أو الموقع">
-    <link rel="canonical" href="https://www.yourwebsite.com/video-page-url">
+    <title>{{TITLE}}</title>
+    <meta name="description" content="{{DESCRIPTION}}">
+    <meta name="keywords" content="{{KEYWORDS}}">
+    <link rel="canonical" href="/"> <!-- يمكن تعديل هذا برمجياً إذا لزم الأمر -->
 
     <!-- ========================================== -->
     <!-- Open Graph (فيسبوك، لينكدإن، واتساب) -->
     <!-- ========================================== -->
     <meta property="og:type" content="video.other">
-    <meta property="og:title" content="عنوان الفيديو يكتب هنا - اسم موقعك">
-    <meta property="og:description" content="وصف دقيق ومحشو بالكلمات المفتاحية للفيديو يكتب هنا.">
+    <meta property="og:title" content="{{TITLE}}">
+    <meta property="og:description" content="{{DESCRIPTION}}">
     <meta property="og:image" content="https://imges007.s3.amazonaws.com/assets/img/viralimg/d128faba91f40c35883d0e795867fa819385.jpg">
-    <meta property="og:url" content="https://www.yourwebsite.com/video-page-url">
-    <meta property="og:site_name" content="اسم موقعك">
-
+    
     <!-- ========================================== -->
     <!-- Twitter Cards (تويتر / X) -->
     <!-- ========================================== -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@YourTwitterHandle">
-    <meta name="twitter:title" content="عنوان الفيديو يكتب هنا - اسم موقعك">
-    <meta name="twitter:description" content="وصف دقيق ومحشو بالكلمات المفتاحية للفيديو يكتب هنا.">
+    <meta name="twitter:title" content="{{TITLE}}">
+    <meta name="twitter:description" content="{{DESCRIPTION}}">
     <meta name="twitter:image" content="https://imges007.s3.amazonaws.com/assets/img/viralimg/d128faba91f40c35883d0e795867fa819385.jpg">
 
     <!-- ========================================== -->
@@ -39,113 +34,106 @@
     <!-- ========================================== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        // إعدادات Tailwind لتخصيص الألوان والخطوط
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Cairo', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            light: '#f0f9ff',
-                            DEFAULT: '#0284c7', // لونك الأساسي (أزرق مثلا)
-                            dark: '#0369a1',
-                        }
-                    }
+                    fontFamily: { sans: ['Cairo', 'sans-serif'], },
+                    colors: { brand: { light: '#f0f9ff', DEFAULT: '#0284c7', dark: '#0369a1', } }
                 }
             }
         }
     </script>
 
     <style>
-        /* تحسينات بصرية إضافية */
         body { font-family: 'Cairo', sans-serif; background-color: #f8fafc; color: #1e293b; }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-        /* شريط التمرير مخصص */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #f1f1f1; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        /* تنسيق الروابط الداخلية التي يولدها سكربت البايثون كـ ul/li */
+        .generated-links ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem; }
+        .generated-links li { 
+            background: #ffffff; 
+            padding: 0.85rem 1rem; 
+            border-radius: 0.5rem; 
+            border: 1px solid #e2e8f0; 
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+        .generated-links li:hover { background: #f0f9ff; border-color: #bae6fd; transform: translateY(-2px); }
+        .generated-links a { text-decoration: none; color: #334155; font-weight: 600; display: block; font-size: 0.9rem; line-height: 1.4; }
+        .generated-links a:hover { color: #0284c7; }
     </style>
 </head>
 <body class="antialiased flex flex-col min-h-screen">
 
     <!-- ========================================== -->
-    <!-- الهيدر (القائمة العلوية) -->
+    <!-- الهيدر -->
     <!-- ========================================== -->
     <header class="bg-white shadow-sm sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <!-- الشعار -->
             <a href="/" class="flex items-center gap-2 text-2xl font-bold text-brand">
                 <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9 14l-5-4v8H5V5h2v8l5-4 5 4V5h2v14h-2v-8l-5 4z"/></svg>
                 <span>موقعي</span>
             </a>
-            
-            <!-- تنقل بسيط -->
             <nav class="hidden md:flex gap-6 font-semibold text-gray-600">
                 <a href="#" class="hover:text-brand transition">الرئيسية</a>
-                <a href="#" class="text-brand border-b-2 border-brand">الفيديوهات</a>
-                <a href="#" class="hover:text-brand transition">المقالات</a>
-                <a href="#" class="hover:text-brand transition">اتصل بنا</a>
+                <a href="#" class="text-brand border-b-2 border-brand">المحتوى الرائج</a>
+                <a href="#" class="hover:text-brand transition">الأقسام</a>
             </nav>
         </div>
     </header>
 
     <!-- ========================================== -->
-    <!-- المحتوى الرئيسي للموقع -->
+    <!-- المحتوى الرئيسي -->
     <!-- ========================================== -->
     <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col lg:flex-row gap-8 w-full">
         
-        <!-- القسم الأيمن: الفيديو والتفاصيل (70%) -->
+        <!-- القسم الأيمن (70%) -->
         <article class="w-full lg:w-2/3">
             
-            <!-- مسار التنقل (Breadcrumbs) (مفيد جداً للسيو) -->
+            <!-- مسار التنقل (Breadcrumbs) -->
             <nav class="flex text-sm text-gray-500 mb-4" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1 space-x-reverse md:space-x-2">
-                    <li class="inline-flex items-center">
-                        <a href="/" class="hover:text-brand transition">الرئيسية</a>
-                    </li>
+                    <li class="inline-flex items-center"><a href="/" class="hover:text-brand transition">الرئيسية</a></li>
                     <li><span class="mx-2 text-gray-400">/</span></li>
-                    <li><a href="/videos" class="hover:text-brand transition">فيديوهات</a></li>
-                    <li><span class="mx-2 text-gray-400">/</span></li>
-                    <li class="text-gray-800 font-semibold truncate max-w-[200px]" aria-current="page">عنوان الفيديو يكتب هنا...</li>
+                    <li><span class="text-gray-800 font-semibold truncate max-w-[200px]" aria-current="page">{{TITLE}}</span></li>
                 </ol>
             </nav>
 
-            <!-- مشغل الفيديو متجاوب 16:9 -->
+            <!-- مشغل الفيديو -->
             <div class="video-container relative w-full pt-[56.25%] bg-black rounded-xl overflow-hidden shadow-lg mb-6">
-                <!-- استبدل الرابط برابط الفيديو الخاص بك -->
-                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="عنوان الفيديو" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <!-- استبدل رابط اليوتيوب بما يناسب موقعك أو استخدم صورة بديلة في حال كان نصياً فقط -->
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="فيديو العرض" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
             </div>
 
-            <!-- عنوان الفيديو والبيانات -->
+            <!-- تفاصيل المحتوى -->
             <div class="bg-white rounded-xl shadow-sm p-6 mb-8 border border-gray-100">
                 <h1 id="video-title" class="text-2xl md:text-3xl font-bold text-gray-900 mb-3 leading-tight">
-                    عنوان الفيديو الاحترافي يكتب هنا لجذب المشاهدين ومحركات البحث
+                    {{TITLE}}
                 </h1>
                 
-                <!-- سطر الوقت والإحصائيات -->
                 <div class="flex flex-wrap items-center justify-between text-sm text-gray-500 mb-6 border-b border-gray-100 pb-4">
                     <div class="flex items-center gap-4">
-                        <!-- سكربت الوقت الديناميكي سيعمل هنا -->
-                        <span id="dynamic-time" class="flex items-center gap-1 font-semibold text-brand" data-publish-date="2026-05-26T10:00:00Z">
+                        <!-- التوقيت الذكي المرتبط بـ Date من السكربت -->
+                        <span id="dynamic-time" class="flex items-center gap-1 font-semibold text-brand" data-publish-date="{{DATE}}">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                             جاري الحساب...
                         </span>
-                        <span class="flex items-center gap-1">
+                        <span class="flex items-center gap-1 hidden sm:flex">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
-                            1,245 مشاهدة
+                            عالي المشاهدة
                         </span>
                     </div>
                     
                     <!-- أزرار المشاركة -->
                     <div class="flex items-center gap-2 mt-4 sm:mt-0">
-                        <span class="font-semibold mr-2">شارك:</span>
                         <!-- فيسبوك -->
                         <button onclick="window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href))" class="bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700 transition" aria-label="شارك على فيسبوك">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
@@ -162,63 +150,22 @@
                 </div>
 
                 <!-- نص الوصف -->
-                <div id="video-description" class="prose max-w-none text-gray-700 leading-relaxed">
-                    <p>
-                        هنا يتم كتابة وصف الفيديو بالتفصيل. يعتبر هذا الجزء مهماً جداً لمحركات البحث. 
-                        شركة معينة تقدم التكنولوجيا الأولى من نوعها في العالم لنفخ الزجاج في معرض كذا، لتعزيز كفاءة خط التعبئة والتغليف والاستدامة والجودة. 
-                    </p>
-                    <p>
-                        يخبرنا مدير إدارة المنتجات بالمزيد عن المفهوم الجديد للشركة في هذا الصدد. تأكد من إدراج الكلمات المفتاحية بشكل طبيعي ضمن هذا النص.
-                    </p>
+                <div id="video-description" class="prose max-w-none text-gray-700 leading-relaxed text-lg">
+                    <p>{{DESCRIPTION}}</p>
                 </div>
             </div>
         </article>
 
-        <!-- القسم الأيسر: فيديوهات ذات صلة (القائمة الجانبية 30%) -->
+        <!-- القسم الأيسر: الروابط الداخلية من السكربت (30%) -->
         <aside class="w-full lg:w-1/3">
             <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100 sticky top-20">
                 <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-xl font-bold text-gray-900 border-r-4 border-brand pr-2">فيديوهات ذات صلة</h2>
-                    <a href="/all-videos" class="text-sm font-semibold text-brand hover:underline">عرض الكل</a>
+                    <h2 class="text-xl font-bold text-gray-900 border-r-4 border-brand pr-2">محتوى ذو صلة</h2>
                 </div>
                 
-                <div class="space-y-4">
-                    <!-- كرت فيديو مصغر 1 -->
-                    <a href="#" class="group flex gap-3 items-start p-2 hover:bg-gray-50 rounded-lg transition">
-                        <div class="relative w-32 shrink-0 rounded-lg overflow-hidden bg-gray-200">
-                            <!-- استخدم صورة بخاصية lazy load للسرعة -->
-                            <img src="https://imges007.s3.amazonaws.com/assets/img/viralimg/d128faba91f40c35883d0e795867fa819385.jpg" alt="عنوان مقترح" loading="lazy" class="w-full h-20 object-cover group-hover:scale-105 transition duration-300">
-                            <span class="absolute bottom-1 right-1 bg-black/80 text-white text-xs px-1.5 py-0.5 rounded">02:08</span>
-                        </div>
-                        <div>
-                            <h3 class="text-sm font-semibold text-gray-800 line-clamp-2 group-hover:text-brand transition">تطور تكنولوجيا التعبئة والتغليف المرنة عالية الجودة</h3>
-                            <p class="text-xs text-gray-500 mt-1">منذ يومين</p>
-                        </div>
-                    </a>
-
-                    <!-- كرت فيديو مصغر 2 -->
-                    <a href="#" class="group flex gap-3 items-start p-2 hover:bg-gray-50 rounded-lg transition">
-                        <div class="relative w-32 shrink-0 rounded-lg overflow-hidden bg-gray-200">
-                            <img src="https://imges007.s3.amazonaws.com/assets/img/viralimg/d128faba91f40c35883d0e795867fa819385.jpg" alt="عنوان مقترح" loading="lazy" class="w-full h-20 object-cover group-hover:scale-105 transition duration-300">
-                            <span class="absolute bottom-1 right-1 bg-black/80 text-white text-xs px-1.5 py-0.5 rounded">13:11</span>
-                        </div>
-                        <div>
-                            <h3 class="text-sm font-semibold text-gray-800 line-clamp-2 group-hover:text-brand transition">اتجاهات تغليف الزجاج الفاخر في السوق العالمية</h3>
-                            <p class="text-xs text-gray-500 mt-1">منذ أسبوع</p>
-                        </div>
-                    </a>
-
-                    <!-- كرت فيديو مصغر 3 -->
-                    <a href="#" class="group flex gap-3 items-start p-2 hover:bg-gray-50 rounded-lg transition">
-                        <div class="relative w-32 shrink-0 rounded-lg overflow-hidden bg-gray-200">
-                            <img src="https://imges007.s3.amazonaws.com/assets/img/viralimg/d128faba91f40c35883d0e795867fa819385.jpg" alt="عنوان مقترح" loading="lazy" class="w-full h-20 object-cover group-hover:scale-105 transition duration-300">
-                            <span class="absolute bottom-1 right-1 bg-black/80 text-white text-xs px-1.5 py-0.5 rounded">16:48</span>
-                        </div>
-                        <div>
-                            <h3 class="text-sm font-semibold text-gray-800 line-clamp-2 group-hover:text-brand transition">الذكاء الاصطناعي والأتمتة في صناعة التغليف</h3>
-                            <p class="text-xs text-gray-500 mt-1">منذ شهر</p>
-                        </div>
-                    </a>
+                <!-- حاوية الروابط الداخلية الديناميكية -->
+                <div class="generated-links">
+                    {{INTERNAL_LINKS}}
                 </div>
             </div>
         </aside>
@@ -226,71 +173,34 @@
     </main>
 
     <!-- ========================================== -->
-    <!-- الفوتر (تذييل الصفحة) -->
+    <!-- الفوتر -->
     <!-- ========================================== -->
-    <footer class="bg-gray-900 text-gray-300 py-12 mt-auto">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- النشرة البريدية -->
-            <div class="md:col-span-1">
-                <h3 class="text-xl font-bold text-white mb-4">اشترك في نشرتنا</h3>
-                <p class="text-sm mb-4">احصل على أحدث الفيديوهات والأخبار في صندوق بريدك.</p>
-                <form class="flex" onsubmit="event.preventDefault(); alert('تم الاشتراك بنجاح!');">
-                    <input type="email" placeholder="البريد الإلكتروني..." required class="w-full px-4 py-2 rounded-r-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-brand">
-                    <button type="submit" class="bg-brand text-white px-4 py-2 rounded-l-md hover:bg-brand-dark transition font-bold">اشترك</button>
-                </form>
-            </div>
-
-            <!-- الروابط -->
-            <div>
-                <h3 class="text-xl font-bold text-white mb-4">منصاتنا</h3>
-                <ul class="space-y-2 text-sm">
-                    <li><a href="#" class="hover:text-white transition">مكونات الغذاء</a></li>
-                    <li><a href="#" class="hover:text-white transition">رؤى التغليف (Packaging Insights)</a></li>
-                    <li><a href="#" class="hover:text-white transition">العناية الشخصية</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h3 class="text-xl font-bold text-white mb-4">روابط هامة</h3>
-                <ul class="space-y-2 text-sm">
-                    <li><a href="#" class="hover:text-white transition">من نحن</a></li>
-                    <li><a href="#" class="hover:text-white transition">اتصل بنا</a></li>
-                    <li><a href="#" class="hover:text-white transition">سياسة الخصوصية</a></li>
-                    <li><a href="#" class="hover:text-white transition">خريطة الموقع</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 pt-8 border-t border-gray-800 text-sm text-center text-gray-500">
-            &copy; <span id="current-year"></span> جميع الحقوق محفوظة لشركتك.
+    <footer class="bg-gray-900 text-gray-300 py-8 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-center text-gray-500">
+            &copy; <span id="current-year"></span> جميع الحقوق محفوظة. 
+            <span class="hidden sm:inline"> | يتم إنشاء المحتوى تلقائياً.</span>
         </div>
     </footer>
 
     <!-- ========================================== -->
-    <!-- لافتة ملفات تعريف الارتباط (Cookies Banner) -->
-    <!-- ========================================== -->
-    <div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-gray-800 text-white p-4 text-sm z-50 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p>باستمرارك في تصفح الموقع، أنت توافق على <a href="#" class="text-brand-light underline hover:text-white">سياسة الخصوصية</a> واستخدام ملفات تعريف الارتباط.</p>
-        <button onclick="document.getElementById('cookie-banner').style.display='none'" class="bg-brand hover:bg-brand-dark px-6 py-2 rounded font-bold whitespace-nowrap transition">موافق</button>
-    </div>
-
-    <!-- ========================================== -->
-    <!-- سكربتات احترافية (المنطق، السيو الذكي، الوقت) -->
+    <!-- سكربتات (الوقت الذكي + Schema.org للسيو) -->
     <!-- ========================================== -->
     <script>
-        // 1. تحديث السنة تلقائياً في الفوتر
         document.getElementById('current-year').textContent = new Date().getFullYear();
 
-        // 2. سكربت ذكي لحساب وعرض الوقت بشكل احترافي (Relative Time)
+        // التوقيت الذكي: يقرأ متغير {{DATE}} ويحسب الزمن المار
         function formatRelativeTime() {
             const timeElement = document.getElementById('dynamic-time');
-            // افترض أن تاريخ النشر موجود في data-attribute
             const publishDateStr = timeElement.getAttribute('data-publish-date'); 
+            
+            // في حال عدم عمل المتغير في الاختبار، يمنع الخطأ
+            if (!publishDateStr || publishDateStr.includes('{{')) return; 
+
             const publishDate = new Date(publishDateStr);
             const now = new Date();
             const diffInSeconds = Math.floor((now - publishDate) / 1000);
 
             let displayText = '';
-
             if (diffInSeconds < 60) {
                 displayText = 'نُشر الآن';
             } else if (diffInSeconds < 3600) {
@@ -305,29 +215,27 @@
                 const days = Math.floor(diffInSeconds / 86400);
                 displayText = `نُشر منذ ${days} أيام`;
             } else {
-                // إذا كان قديماً جداً، اعرض التاريخ كاملاً بتنسيق جميل
-                const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute:'2-digit' };
+                const options = { year: 'numeric', month: 'long', day: 'numeric' };
                 displayText = `نُشر في ${publishDate.toLocaleDateString('ar-EG', options)}`;
             }
 
-            // تحديث النص مع الاحتفاظ بالأيقونة
             timeElement.innerHTML = `
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 ${displayText}
             `;
         }
-        
-        // تشغيل دالة الوقت فور تحميل الصفحة
         formatRelativeTime();
 
-        // 3. التوليد التلقائي لبيانات Schema.org (VideoObject) للسيو القوي جداً!
-        // هذا الكود يقرأ البيانات من الصفحة ويولد سكريبت JSON-LD ويزرعه في الـ head
+        // التوليد التلقائي للـ Schema
         (function generateSchema() {
             try {
+                // التأكد من عدم وجود بيانات خام غير مستبدلة (في حال الاختبار بدون السكربت)
+                const rawTitle = "{{TITLE}}";
                 const title = document.getElementById('video-title').innerText.trim();
+                if(title === rawTitle) return;
+
                 const description = document.getElementById('video-description').innerText.trim();
                 const publishDate = document.getElementById('dynamic-time').getAttribute('data-publish-date');
-                // صورة افتراضية أو تستخرجها من الميتا تاج
                 const thumbnailUrl = document.querySelector('meta[property="og:image"]').getAttribute('content');
                 
                 const schemaData = {
@@ -337,25 +245,15 @@
                     "description": description,
                     "thumbnailUrl": thumbnailUrl,
                     "uploadDate": publishDate,
-                    "contentUrl": window.location.href,
-                    "embedUrl": window.location.href, // أو رابط الآيفريم لو أردت
-                    "publisher": {
-                        "@type": "Organization",
-                        "name": "اسم موقعك",
-                        "logo": {
-                            "@type": "ImageObject",
-                            "url": "https://www.yourwebsite.com/logo.png"
-                        }
-                    }
+                    "contentUrl": window.location.href
                 };
 
                 const scriptEl = document.createElement('script');
                 scriptEl.type = "application/ld+json";
                 scriptEl.text = JSON.stringify(schemaData);
                 document.head.appendChild(scriptEl);
-                console.log("تم تفعيل Schema.org بنجاح لتعزيز محركات البحث!");
             } catch (e) {
-                console.error("خطأ في توليد Schema", e);
+                console.error("Schema Gen Error:", e);
             }
         })();
     </script>
