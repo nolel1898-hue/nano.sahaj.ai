@@ -3,16 +3,16 @@
 
   <sitemap>
     <loc>https://api.flexdoc.com.au/map-main.xml</loc>
-    <lastmod>2026-05-26</lastmod>
+    <lastmod>2026-05-27</lastmod>
   </sitemap>
 
   <sitemap>
     <loc>https://api.flexdoc.com.au/map-pages.xml</loc>
-    <lastmod>2026-05-26</lastmod>
+    <lastmod>2026-05-27</lastmod>
   </sitemap>
 
   <sitemap>
     <loc>https://api.flexdoc.com.au/map-videos.xml</loc>
-    <lastmod>2026-05-26</lastmod>
+    <lastmod>2026-05-27</lastmod>
   </sitemap>
 </sitemapindex>
